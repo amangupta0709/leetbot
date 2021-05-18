@@ -1,0 +1,29 @@
+{
+  "name": "leetbot",
+  "version": "1.0.0",
+  "description": "An automated discord bot to keep records of you and your friends leetcode solved questions.",
+  "main": "server.js",
+  "scripts": {
+    "start": "cross-env NODE_ENV=production node server.js",
+    "dev": "cross-env NODE_ENV=development nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/amangupta0709/leetbot.git"
+  },
+  "author": "Aman Gupta",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/amangupta0709/leetbot/issues"
+  },
+  "homepage": "https://github.com/amangupta0709/leetbot#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  },
+  "dependencies": {
+    "cross-env": "^7.0.3",
+    "discord.js": "^12.5.3",
+    "dotenv": "^9.0.2",
+    "express": "^4.17.1"
+  }
+}
