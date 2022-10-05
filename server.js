@@ -1,10 +1,24 @@
 const express = require('express')
 const Discord = require('discord.js')
+const mongoose = require("mongoose");
 const cors = require('cors')
+const questionModel = require('./models')
 require('dotenv').config()
 const app = express()
 
 const client = new Discord.Client()
+mongoose.connect(
+  process.env.URI,
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  }
+);
+const db = mongoose.connection;
+db.on("error", console.error.bind(console, "connection error: "));
+db.once("open", function() {
+  console.log("Connected successfully");
+});
 
 //cors
 app.use(cors())
@@ -18,12 +32,18 @@ client.on('ready', () => {
 
 app.post('/api/data', async (req, res) => {
   const data = {
-    question: req.body.question,
+    name: req.body.question,
     url: req.body.url,
-    name: req.body.name,
-    tags: req.body.tags,
+    solved_by: req.body.name,
+    tags: req.body.tags.split(','),
     difficulty: req.body.difficulty,
   }
+  console.log(data)
+  const question = new questionModel(data);
+  await question.save()
+    .catch(() => {
+      res.status(400).json({ message: 'Invalid Data' });
+    })
   const message = new Discord.MessageEmbed()
     .setColor('#0099ff')
     .setTitle(data.question)
