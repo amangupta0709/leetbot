@@ -69,6 +69,43 @@ app.post('/api/data', async (req, res) => {
     })
 })
 
+client.on('message', message => {
+  const command = "/show"
+  if (!message.content.startsWith(command)) return;
+      let args = message.content.substring(command.length).split("/");
+      if(!args.length()==3) return message.reply('needs 2 arguements first /d and second /s');
+
+      
+
+      if(args[1][0]=='d'){
+        
+      }
+      else{
+        return message.reply('needs 2 arguements first /d and second /s');
+      }
+
+      if(args[2][0]=='s'){
+
+      }
+      else{
+        return message.reply('needs 2 arguements first /d and second /s');
+      }
+
+      //  switch (args[0]) {
+      //      case 'test':
+      //           if(!args[1]) return message.reply('no argument');
+      //            if(args[2]) return message.reply('Too many arguments')
+
+      //       if (args[1] === 'one') {
+      //           message.channel.send('test one');
+      //       } else  if (args[1] === 'two') {
+      //           message.channel.send('test two');
+      //       } else 
+      //           message.channel.send('Invalid arguments')
+      //       }
+      //       break;
+});
+
 client.login(process.env.TOKEN)
 
 const PORT = process.env.PORT || 5000
